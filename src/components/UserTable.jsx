@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form'
 import { useState, useEffect } from 'react'
 import UserRow from './UserRow'
 
-const UserTable = () => {
+const UserTable = ({ deleteUser }) => {
   const [users, setUsers] = useState()
   const [check, setCheck] = useState()
   const [checkAll, setCheckAll] = useState(false)
@@ -53,9 +53,11 @@ const UserTable = () => {
           Object.keys(users).map((key) => {
             return (
               <UserRow
+                key={users[key].uid}
                 user={users[key]}
                 checkAll={checkAll}
                 setCheckAll={setCheckAll}
+                deleteUser={deleteUser}
               />
             )
           })}

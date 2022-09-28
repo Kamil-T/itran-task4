@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import UserTable from './components/UserTable'
-import Toolbar from './components/Toolbar'
+import Dashboard from './components/Dashboard'
 import LoginRegistration from './components/LoginRegistration'
 
 function App() {
@@ -10,10 +9,7 @@ function App() {
   return (
     <div className='App'>
       {logged ? (
-        <>
-          <Toolbar setLogged={setLogged} />
-          <UserTable />
-        </>
+        <Dashboard setLogged={setLogged} />
       ) : (
         <LoginRegistration setLogged={setLogged} />
       )}

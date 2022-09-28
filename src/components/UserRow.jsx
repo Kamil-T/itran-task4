@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
+import { userDelete } from '../firebase'
 import Form from 'react-bootstrap/Form'
 
-const UserRow = ({ user, checkAll, setCheckAll }) => {
+const UserRow = ({ user, checkAll, setCheckAll, deleteUser }) => {
   const { uid, name, email, lastLoginAt, createdAt, status } = user
 
   const [checked, setChecked] = useState(false)
@@ -10,9 +11,14 @@ const UserRow = ({ user, checkAll, setCheckAll }) => {
     if (checkAll) setChecked(true)
     if (!checkAll) setChecked(false)
   }, [checkAll])
+
+  useEffect(() => {
+    if (deleteUser) userDelete(uid)
+  })
+
   return (
     <>
-      <tr key={uid}>
+      <tr>
         <th>
           <Form>
             <Form.Check

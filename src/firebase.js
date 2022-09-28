@@ -4,8 +4,9 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
+  deleteUser,
 } from 'firebase/auth'
-import { getDatabase, ref, set } from 'firebase/database'
+import { getDatabase, ref, set, remove } from 'firebase/database'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAkKoN0TkQKFIZu89zGeUr0whDmZbEK0Xk',
@@ -53,4 +54,17 @@ const logout = () => {
   signOut(auth)
 }
 
-export { auth, db, emailPasswordLogIn, emailPasswordRegistration, logout }
+const userDelete = () => {
+  const user = auth.currentUser
+  remove(ref(db, 'users/' + user.uid))
+  deleteUser(user)
+}
+
+export {
+  auth,
+  db,
+  emailPasswordLogIn,
+  emailPasswordRegistration,
+  logout,
+  userDelete,
+}
