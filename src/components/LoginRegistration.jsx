@@ -14,9 +14,9 @@ const LoginRegistration = ({ setLogged }) => {
       </ButtonToolbar>
       <div>
         {registered ? (
-          <Login />
+          <Login setLogged={setLogged} />
         ) : (
-          <Registration setRegistered={setRegistered} />
+          <Registration setRegistered={setRegistered} setLogged={setLogged} />
         )}
       </div>
     </>
